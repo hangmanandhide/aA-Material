@@ -2,6 +2,8 @@ require_relative "piece.rb"
 require "byebug"
 
 class Board
+  attr_reader :layout
+
   def initialize
     @layout = Array.new(8) { Array.new(8, nil) }
     populate_pieces
@@ -12,10 +14,18 @@ class Board
     if valid_start_pos?(start_pos)
       #debugger
       if valid_end_pos?(end_pos)
-        self[start_pos].pos = end_pos
-        [end_pos] = [start_pos]
-        #how do we update the 2d grid?
-        x,y = y,x
+        self[start_pos].pos = end_pos #reassign pos for piece moved - works
+        debugger
+        start = self[start_pos]
+        end_ = self[end_pos]
+
+        self[start_pos] = end_
+        self[end_pos] = start
+
+        #self[end_pos], self[start_pos] = self[start_pos], self[end_pos]
+        #swap nil and piece??
+
+        #x, y = y, x
       else
         raise "Error: Cannot move to that end pos"
       end
@@ -37,10 +47,14 @@ class Board
     self[pos].nil?
   end
 
-  def []=(pos1, pos2)
+  def valid_pos?(pos)
+    x, y = pos
+    (0..7).to_a.include?(x) && (0..7).to_a.include?(y)
+  end
+
+  def []=(pos1, value)
     x1, y1 = pos1
-    x2, y2 = pos2
-    @layout[x1][y1] = @layout[x2][y2]
+    @layout[x1][y1] = value
   end
 
   def [](pos)
