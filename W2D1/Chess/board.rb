@@ -14,7 +14,7 @@ class Board
     if valid_start_pos?(start_pos)
       #debugger
       if valid_end_pos?(end_pos)
-        self[start_pos].pos = end_pos #reassign pos for piece moved - works
+        self[start_pos].position = end_pos #reassign pos for piece moved - works
         debugger
         start = self[start_pos]
         end_ = self[end_pos]
@@ -66,37 +66,37 @@ class Board
     queen_locs = [[0, 4], [7, 4]]
     queen_locs.each do |loc|
       x, y = loc
-      @layout[x][y] = Piece.new(loc, "Q")
+      @layout[x][y] = Queen.new(loc, " ♕ ")
     end
 
     king_locs = [[0, 3], [7, 3]]
     king_locs.each do |loc|
       x, y = loc
-      @layout[x][y] = Piece.new(loc, "K")
+      @layout[x][y] = Piece.new(loc, " ♔ ")
     end
 
     bishop_locs = [[0, 2], [0, 5], [7, 2], [7, 5]]
     bishop_locs.each do |loc|
       x, y = loc
-      @layout[x][y] = Piece.new(loc, "B")
+      @layout[x][y] = Piece.new(loc, " ♗ ")
     end
 
     knight_locs = [[0, 1], [0, 6], [7, 1], [7, 6]]
     knight_locs.each do |loc|
       x, y = loc
-      @layout[x][y] = Piece.new(loc, "N")
+      @layout[x][y] = Piece.new(loc, " ♘ ")
     end
 
     castle_locs = [[0, 0], [0, 7], [7, 0], [7, 7]]
     castle_locs.each do |loc|
       x, y = loc
-      @layout[x][y] = Piece.new(loc, "C")
+      @layout[x][y] = Piece.new(loc, " ♖ ")
     end
 
     pawn_locs = [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [6, 0], [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6], [6, 7]]
     pawn_locs.each do |loc|
       x, y = loc
-      @layout[x][y] = Piece.new(loc, "P")
+      @layout[x][y] = Piece.new(loc, " ♙ ")
     end
   end
 end
