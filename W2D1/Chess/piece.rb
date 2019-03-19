@@ -1,5 +1,7 @@
 class Piece
-    attr_reader :type
+  attr_reader :type
+  attr_accessor :pos
+
   def initialize(pos, type)
     @position = pos
     @type = type
@@ -8,6 +10,4 @@ class Piece
   def inspect
     @type
   end
-
-
 end

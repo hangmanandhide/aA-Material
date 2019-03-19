@@ -8,11 +8,44 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
+    #debugger
+    if valid_start_pos?(start_pos)
+      #debugger
+      if valid_end_pos?(end_pos)
+        self[start_pos].pos = end_pos
+        [end_pos] = [start_pos]
+        #how do we update the 2d grid?
+        x,y = y,x
+      else
+        raise "Error: Cannot move to that end pos"
+      end
+    else
+      raise "Error: No piece at start position"
+    end
     ##update 2d grid
     ##update moved piece's POS
+  end
 
-    ##raise exception if no piece @ start_pos
-    ##raise exception if piece cannot move to end_pos
+  def valid_start_pos?(pos)
+    #debugger
+    !self[pos].nil?
+  end
+
+  def valid_end_pos?(pos)
+    #debugger
+    #@layout[pos[0]][pos[1]].nil?
+    self[pos].nil?
+  end
+
+  def []=(pos1, pos2)
+    x1, y1 = pos1
+    x2, y2 = pos2
+    @layout[x1][y1] = @layout[x2][y2]
+  end
+
+  def [](pos)
+    x, y = pos
+    @layout[x][y]
   end
 
   def populate_pieces
