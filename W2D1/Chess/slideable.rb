@@ -32,10 +32,9 @@ module Slideable
     # end
 
     move_dirs.each do |deltamove|
-       legal_moves += grow_unblocked_moves_in_dir(deltamove[0], deltamove[1])
+      legal_moves += grow_unblocked_moves_in_dir(deltamove[0], deltamove[1])
     end
     legal_moves
-
   end
 
   private
@@ -45,20 +44,19 @@ module Slideable
 
   def grow_unblocked_moves_in_dir(dx, dy) #right now, only checks on board
     dir_moves = []
-    
+
     current_pos = self.position
     keep_moving = true
     while keep_moving
-        move_option = [current_pos[0] + dx, current_pos[1] + dy]
-        if (0..7).to_a.include?(move_option[0]) && (0..7).to_a.include?(move_option[1])
-            dir_moves << move_option
-            current_pos = dir_moves.last
-        else
-            keep_moving = false
-        end
-      
+      move_option = [current_pos[0] + dx, current_pos[1] + dy]
+      if (0..7).to_a.include?(move_option[0]) && (0..7).to_a.include?(move_option[1])
+        dir_moves << move_option
+        current_pos = dir_moves.last
+      else
+        keep_moving = false
+      end
     end
-    
+
     dir_moves
   end
 end

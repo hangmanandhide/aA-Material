@@ -15,7 +15,7 @@ class Board
       #debugger
       if valid_end_pos?(end_pos)
         self[start_pos].position = end_pos #reassign pos for piece moved - works
-        debugger
+        #debugger
         start = self[start_pos]
         end_ = self[end_pos]
 

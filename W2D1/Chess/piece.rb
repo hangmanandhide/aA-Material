@@ -1,11 +1,12 @@
 require "singleton"
 require "./slideable.rb"
+require "./stepable.rb"
 
 class Piece
-  attr_reader :type
+  attr_reader :type, :color :board
   attr_accessor :position
 
-  def initialize(pos, board, color)
+  def initialize(pos, board, color) 
     @position = pos
     @board = board
     @color = color
