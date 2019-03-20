@@ -66,7 +66,7 @@ class Board
     queen_locs = [[0, 4], [7, 4]]
     queen_locs.each do |loc|
       x, y = loc
-      @layout[x][y] = Queen.new(loc, " ♕ ")
+      @layout[x][y] = Piece.new(loc, " ♕ ")
     end
 
     king_locs = [[0, 3], [7, 3]]

@@ -5,9 +5,9 @@ class Piece
   attr_reader :type
   attr_accessor :position
 
-  def initialize(pos, color) #add board back in here
+  def initialize(pos, board, color)
     @position = pos
-    #@board = board
+    @board = board
     @color = color
   end
 
@@ -22,13 +22,21 @@ class Piece
   end
 end
 
-# class Rook < Piece
-#   include Slideable
-# end
+class Rook < Piece
+  include Slideable
 
-# class Bishop < Piece
-#   include Slideable
-# end
+  def move_dirs
+    move_rook = horizontal_dirs
+  end
+end
+
+class Bishop < Piece
+  include Slideable
+
+  def move_dirs
+    move_bishop = diagonal_dirs
+  end
+end
 
 class Queen < Piece
   include Slideable
@@ -38,20 +46,21 @@ class Queen < Piece
   end
 end
 
-# class Knight < Piece
-#   include Stepable
-# end
+class Knight < Piece
+  include Stepable
 
-# class King < Piece
-#   include Stepable
-# end
+  def move_dirs
+    move_knight = [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, -1], [-2, 1]]
+  end
+end
 
-# class Pawn < Piece
-# end
+class King < Piece
+  include Stepable
 
-# class NullPiece < Piece
-#   include Singleton
-# end
+  def move_dirs
+    move_king = [[0, 1], [0, -1], [1, 0], [1, 1], [1, -1], [-1, 1], [-1, -1], [-1, 0]]
+  end
+end
 
-module Stepable
+class Pawn < Piece
 end
